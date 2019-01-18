@@ -16,7 +16,7 @@ int main()
     step = 1.0 / (double)num_steps;
     omp_set_num_threads(NUM_THREADS);
     start_time = omp_get_wtime();
-#pragma omp parallel for private(x) reduction(+ : sum)
+#pragma omp parallel for schedule(guided, 32) private(x) reduction(+ : sum)
     for (int i = 0; i < num_steps; i++)
     {
         x = (i + 0.5) * step;
